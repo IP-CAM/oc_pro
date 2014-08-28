@@ -1,0 +1,121 @@
+<?php
+// Locale
+$langs['code']                          = 'en';
+$langs['direction']                     = 'ltr';
+$langs['date_format_short']             = 'd/m/Y';
+$langs['date_format_long']              = 'l dS F Y';
+$langs['time_format']                   = 'h:i:s A';
+$langs['decimal_point']                 = '.';
+$langs['thousand_point']                = ',';
+
+// Text
+$langs['text_yes']                      = 'Yes';
+$langs['text_no']                       = 'No';
+$langs['text_enabled']                  = 'Enabled';
+$langs['text_disabled']                 = 'Disabled';
+$langs['text_none']                     = ' --- None --- ';
+$langs['text_select']                   = ' --- Please Select --- ';
+$langs['text_select_all']               = 'Select All';
+$langs['text_unselect_all']             = 'Unselect All';
+$langs['text_all_zones']                = 'All Zones';
+$langs['text_default']                  = ' <b>(Default)</b>';
+$langs['text_close']                    = 'Close';
+$langs['text_pagination']               = 'Showing {start} to {end} of {total} ({pages} Pages)';
+$langs['text_no_results']               = 'No results!';
+$langs['text_separator']                = ' &gt; ';
+$langs['text_edit']                     = 'Edit';
+$langs['text_view']                     = 'View';
+$langs['text_home']                     = 'Home';
+
+// Button
+$langs['button_insert']                 = 'Insert';
+$langs['button_delete']                 = 'Delete';
+$langs['button_save']                   = 'Save';
+$langs['button_cancel']                 = 'Cancel';
+$langs['button_clear']                  = 'Clear Log';
+$langs['button_close']                  = 'Close';
+$langs['button_filter']                 = 'Filter';
+$langs['button_send']                   = 'Send';
+$langs['button_edit']                   = 'Edit';
+$langs['button_copy']                   = 'Copy';
+$langs['button_back']                   = 'Back';
+$langs['button_remove']                 = 'Remove';
+$langs['button_backup']                 = 'Backup';
+$langs['button_restore']                = 'Restore';
+$langs['button_repair']                 = 'Repair';
+$langs['button_upload']                 = 'Upload';
+$langs['button_submit']                 = 'Submit';
+$langs['button_invoice']                = 'Print Invoice';
+$langs['button_add_address']            = 'Add Address';
+$langs['button_add_attribute']          = 'Add Attribute';
+$langs['button_add_banner']             = 'Add Banner';
+$langs['button_add_custom_field_value'] = 'Add Custom Field';
+$langs['button_add_product']            = 'Add Product';
+$langs['button_add_voucher']            = 'Add Voucher';
+$langs['button_add_filter']             = 'Add Filter';
+$langs['button_add_option']             = 'Add Option';
+$langs['button_add_option_value']       = 'Add Option Value';
+$langs['button_add_discount']           = 'Add Discount';
+$langs['button_add_special']            = 'Add Special';
+$langs['button_add_image']              = 'Add Image';
+$langs['button_add_geo_zone']           = 'Add Geo Zone';
+$langs['button_add_history']            = 'Add History';
+$langs['button_add_transaction']        = 'Add Transaction';
+$langs['button_add_total']              = 'Add Total';
+$langs['button_add_reward']             = 'Add Reward Points';
+$langs['button_add_route']              = 'Add Route';
+$langs['button_add_rule' ]              = 'Add Rule';
+$langs['button_add_module']             = 'Add Module';
+$langs['button_add_link']               = 'Add Link';
+$langs['button_update_total']           = 'Update Totals';
+$langs['button_approve']                = 'Approve';
+$langs['button_reset']                  = 'Reset';
+$langs['button_add_profile']            = 'Add Profile';
+
+// Tab
+$langs['tab_address']                   = 'Address';
+$langs['tab_admin']                     = 'Admin';
+$langs['tab_attribute']                 = 'Attribute';
+$langs['tab_customer']                  = 'Customer Details';
+$langs['tab_data']                      = 'Data';
+$langs['tab_design']                    = 'Design';
+$langs['tab_discount']                  = 'Discount';
+$langs['tab_general']                   = 'General';
+$langs['tab_history']                   = 'History';
+$langs['tab_fraud']                     = 'Fraud';
+$langs['tab_ftp']                       = 'FTP';
+$langs['tab_ip']                        = 'IP Addresses';
+$langs['tab_links']                     = 'Links';
+$langs['tab_log']                       = 'Log';
+$langs['tab_image']                     = 'Image';
+$langs['tab_option']                    = 'Option';
+$langs['tab_server']                    = 'Server';
+$langs['tab_store']                     = 'Store';
+$langs['tab_special']                   = 'Special';
+$langs['tab_local']                     = 'Local';
+$langs['tab_mail']                      = 'Mail';
+$langs['tab_marketplace_links']         = 'Marketplace Links';
+$langs['tab_module']                    = 'Module';
+$langs['tab_order']                     = 'Order Details';
+$langs['tab_payment']                   = 'Payment Details';
+$langs['tab_product']                   = 'Products';
+$langs['tab_return']                    = 'Return Details';
+$langs['tab_reward']                    = 'Reward Points';
+$langs['tab_profile']                   = 'Profiles';
+$langs['tab_shipping']                  = 'Shipping Details';
+$langs['tab_total']                     = 'Totals';
+$langs['tab_transaction']               = 'Transactions';
+$langs['tab_voucher']                   = 'Vouchers';
+$langs['tab_voucher_history']           = 'Voucher History';
+$langs['tab_price']                     = 'Price';
+
+// Error
+$langs['error_upload_1']                = 'Warning: The uploaded file exceeds the upload_max_filesize directive in php.ini!';
+$langs['error_upload_2']                = 'Warning: The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form!';
+$langs['error_upload_3']                = 'Warning: The uploaded file was only partially uploaded!';
+$langs['error_upload_4']                = 'Warning: No file was uploaded!';
+$langs['error_upload_6']                = 'Warning: Missing a temporary folder!';
+$langs['error_upload_7']                = 'Warning: Failed to write file to disk!';
+$langs['error_upload_8']                = 'Warning: File upload stopped by extension!';
+$langs['error_upload_999']              = 'Warning: No error code available!';
+?>

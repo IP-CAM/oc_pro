@@ -1,0 +1,8 @@
+<?php
+
+class CartAction extends Action{
+
+	public function index(){
+		
+	}
+}
