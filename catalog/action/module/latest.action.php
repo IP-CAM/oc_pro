@@ -1,6 +1,6 @@
 <?php
 
-class Content_featureAction extends Action{
+class LatestAction extends Action{
 
 	public function index(){
 

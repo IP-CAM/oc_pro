@@ -12,4 +12,8 @@ class ProductAction extends AdminAction {
 
   		$this->display('product/product_list');
   	}
+
+  	public function edit(){
+  		$this->display('product/product_form');
+  	}
 }

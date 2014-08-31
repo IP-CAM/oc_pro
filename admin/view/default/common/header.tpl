@@ -10,44 +10,23 @@
     <link type="text/css" href="/admin/static/js/jquery/ui/themes/ui-lightness/jquery-ui-1.8.16.custom.css" rel="stylesheet" />
     <script type="text/javascript" src="/admin/static/js/jquery/tabs.js"></script>
     <script type="text/javascript" src="/admin/static/js/jquery/superfish/js/superfish.js"></script>
-    <script type="text/javascript" src="/admin/static/js/common.js"></script>
-    {literal}
-    <script type="text/javascript">
-    $(document).ready(function(){
-        // Confirm Delete
-        $('#form').submit(function(){
-            if ($(this).attr('action').indexOf('delete',1) != -1) {
-                if (!confirm('{$langs['text_confirm']}')) {
-                    return false;
-                }
-            }
-        });
-        // Confirm Uninstall
-        $('a').click(function(){
-            if ($(this).attr('href') != null && $(this).attr('href').indexOf('uninstall', 1) != -1) {
-                if (!confirm('{$langs['text_confirm']}')) {
-                    return false;
-                }
-            }
-        });
-            });
-        </script>
-      {/literal}
   </head>
   <body>
   <div id="container">
     <div id="header">
       <div class="div1">
-        <div class="div2"><img src="/admin/static/image/logo.png" title="{$heading_title}" onclick="" /></div>
-        {if $smarty.session.ADMIN_UID}
+        <div class="div2">
+          <img src="/admin/static/image/logo.png" title="{$heading_title}" onclick="" />
+        </div>
+        {if $smarty.session.AID}
           <div class="div3"><img src="/admin/static/image/lock.png" alt="" style="position: relative"></div>
         {/if}
       </div>
-      {if $smarty.session.ADMIN_UID}
+      {if $smarty.session.AID}
       <div id="menu">
         <ul class="left" style="">
-          <li id="dashboard"><a href="{$home}" class="top">{$langs['text_dashboard']}</a></li>
-          <li id="catalog"><a class="top">{$langs['text_catalog']}</a>
+          <li id="dashboard" class="{$selected['common']}"><a href="{$home}" class="top">{$langs['text_dashboard']}</a></li>
+          <li id="catalog" class="{$selected['product']}"><a class="top">{$langs['text_product']}</a>
             <ul>
               <li><a href="{$category}">{$langs['text_category']}</a></li>
               <li><a href="{$product}">{$langs['text_product']}</a></li>
@@ -60,7 +39,7 @@
               <li><a href="{$option}">{$langs['text_option']}</a></li>
             </ul>
           </li>
-          <li id="extension"><a class="top">{$langs['text_extension']}</a>
+          <li id="extension" class="{$selected['extension']}"><a class="top">{$langs['text_extension']}</a>
             <ul>
               <li><a href="{$module}">{$langs['text_module']}</a></li>
               <li><a href="{$shipping}">{$langs['text_shipping']}</a></li>
@@ -68,7 +47,7 @@
               <li><a href="{$total}">{$langs['text_total']}</a></li>
             </ul>
           </li>
-          <li id="sale"><a class="top">{$langs['text_sale']}</a>
+          <li id="sale" class="{$selected['sale']}"><a class="top">{$langs['text_sale']}</a>
             <ul>
               <li><a href="{$order}">{$langs['text_order']}</a></li>
               <li><a class="parent">{$langs['text_customer']}</a>
@@ -82,7 +61,7 @@
               <!-- PAYPAL MANAGE NAVIGATION LINK END -->
             </ul>
           </li>
-          <li id="system"><a class="top">{$langs['text_system']}</a>
+          <li id="system" class="{$selected['setting']}"><a class="top">{$langs['text_system']}</a>
             <ul>
               <li><a href="{$setting}">{$langs['text_setting']}</a></li>
               <li><a href="{$layout}">{$langs['text_layout']}</a></li>
@@ -109,3 +88,23 @@
       </div>
       {/if}
     </div>
+{literal}
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('#menu > ul').superfish({
+        pathClass  : 'overideThisToUse',
+        delay    : 0,
+        animation  : {height: 'show'},
+        speed    : 'normal',
+        autoArrows   : false,
+        dropShadows  : false, 
+        disableHI  : false, /* set to true to disable hoverIntent detection */
+        onInit     : function(){},
+        onBeforeShow : function(){},
+        onShow     : function(){},
+        onHide     : function(){}
+      });
+      $('#menu > ul').css('display', 'block');
+    });
+  </script>
+{/literal}

@@ -14,7 +14,7 @@ define('IS_ADMIN',true);
 include_once(ROOT.'/core/config.php');
 
 // ini_set('session.cookie_domain',COOKIE_DOMAIN);
-
+session_save_path(SESSION);
 session_start();
 
 include_once(CORE.'function.php');

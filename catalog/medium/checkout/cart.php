@@ -95,7 +95,7 @@ class Cart extends Medium{
 			
 		}
 		
-		if(P('checkLogin')){
+		if(isLogged()){
 
 			NOSQL::checkout('cart','updateUserCart',array($cart));
 		}

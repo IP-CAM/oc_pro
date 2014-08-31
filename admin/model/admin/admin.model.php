@@ -8,4 +8,11 @@ class AdminMysql extends MysqlModel{
 		
 		return $this->get($sql);
 	}
+
+	public function getAdminByID($uid){
+
+		$sql="SELECT * FROM ".DB_PREFIX."user WHERE user_id={$uid}";
+
+		return $this->get($sql);
+	}
 }

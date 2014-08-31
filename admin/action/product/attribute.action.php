@@ -1,5 +1,7 @@
 <?php
 
+
+
 class AttributAction extends AdminAction { 
 	
 	protected $lang='product/attribute';

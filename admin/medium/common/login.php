@@ -27,7 +27,15 @@ class Login extends Medium{
 		S('ADMIN_UID',$admin['user_id']);
 
 		S('ADMIN',$admin);
+
+		$ip=getip();
+
+		$time=time();
+
+		$logged="{$_SERVER['HTTP_HOST']};{$ip};{$admin['user_id']};{$time}";
 		
+		C('ADMINLOGGED',encrypt($logged));
+
 		return true;
 	}
 }

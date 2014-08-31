@@ -45,8 +45,6 @@ class View{
 		$this->view->setCacheDir(CACHE_DIR);
 		$this->view->setCompileDir(COMPILE_DIR);
 		$this->view->caching=HTML_CACHE;
-		//检测登录cookie
-		// P('CheckLogin');
 	}
 
 	private function init_REQUEST(){

@@ -10,6 +10,7 @@ define('EXTENSION', ROOT.'/extension/');
 define('ADMIN', ROOT.'/admin/');
 define('CACHE', ROOT.'/cache/');
 define('CONFIG', ROOT.'/config/');
+define('SESSION', CACHE.'session');
 
 if (defined('IS_ADMIN')) {
 	// admin path
@@ -19,6 +20,7 @@ if (defined('IS_ADMIN')) {
 	define('VIEW', ADMIN.'view/default/');
 	define('LANG', ADMIN.'lang/');
 	define('IMAGE', '/admin/static/image/');
+	define('COOKIE_TIMEOUT',1800); // 30 min
 }else{
 	// catalog path
 	define('ACTION', CATALOG.'action/');
@@ -26,6 +28,7 @@ if (defined('IS_ADMIN')) {
 	define('MODEL', CATALOG.'model/');
 	define('VIEW', CATALOG.'view/default/');
 	define('LANG', CATALOG.'lang/');
+	define('COOKIE_TIMEOUT',1800); // 30 min
 }
 
 // System
@@ -41,7 +44,7 @@ define('CACHE_DIR', CACHE.'html/');
 define('HTML_CACHE',false);
 
 // cookie  && session
-define('COOKIE_DOMAIN','oc');
+define('COOKIE_DOMAIN','about.com');
 define('COOKIE_ENCRYPT_KEY','tvrc4m@cookie');
 
 

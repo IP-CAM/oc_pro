@@ -14,6 +14,8 @@ class Admin extends Medium{
 	}
 	
 	private function get($data){
-		
+
+		$uid=$data['uid'];
+		return SQL::admin('admin','getAdminByID',array($uid));
 	}
 }

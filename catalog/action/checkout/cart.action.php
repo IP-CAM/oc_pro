@@ -1,8 +1,22 @@
 <?php
 
-class CartAction extends Action{
+class CartAction extends Action {
 
-	public function index(){
+	protected $logged;
+
+	public function index() {
 		
+	}
+
+	public function add(){
+
+	}
+
+	public function remove(){
+
+	}
+
+	public function delete(){
+
 	}
 }

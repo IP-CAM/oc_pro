@@ -11,6 +11,8 @@ class Action extends View{
 	}
 
 	protected function initialize(){
+		//检测登录cookie
+		P('checkLogin');
 		$this->view->registerPlugin('block','lrtip','smarty_block_lrtip',false);
 		$this->view->registerPlugin('block','top','smarty_block_top',false);
 		$this->view->registerPlugin('block','toplr','smarty_block_toplr',false);
@@ -44,27 +46,25 @@ class Action extends View{
 	}
 }
 
+class iAction extends Action{
+
+	public function __construct(){
+		parent::__construct();
+	}
+}
+
 class AccountAction extends Action{
 
 	public function __construct(){
 		parent::__construct();
-
 	}
-	
 }
 
 class AdminAction extends Action{
 
 	public function __construct(){
 		parent::__construct();
-		$this->checkLogin();
-	}
-
-	private function checkLogin(){
-		// print_r($_SESSION);exit();
-		if(!S('ADMIN_UID')){
-			redirect('/admin/index.php?app=login');
-		}
+		!isLogged() && redirect('/admin/index.php?app=login');
 	}
 }
 

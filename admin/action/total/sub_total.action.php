@@ -1,5 +1,6 @@
-<?php 
-class TotalSubTotalActioActionAction extends AdminAction { 
+<?php
+
+class SubTotalActioAction extends AdminAction { 
 	private $error = array(); 
 	 
 	public function index() { 

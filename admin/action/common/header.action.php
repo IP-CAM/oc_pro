@@ -33,9 +33,12 @@ class HeaderAction extends Action {
 		$links['user'] = admin_url('user/user' );
 		$links['user_group'] = admin_url('user/user_permission' );
 
-
-		$links['stores'] = array();
-
+		$folder=$_GET['f'];
+		
+		$selected[($folder=='payment' || $folder=='module' || $folder=='extension' || $folder=='shipping')?'extension':$folder]='selected';
+		
+		$links['selected']=$selected;
+		
 		$this->assign($links);
 				
 		return $this->fetch('common/header');

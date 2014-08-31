@@ -29,14 +29,12 @@
             <tr>
               <td class="left">{$langs[$total['code']]}</td>
               <td class="right">
-                [
                 {if $total['installed']} 
-                  <a href="/admin/total/{$total['code']}">edit</a>
-                  <a href="/admin/extension/total/uninstall?code={$total['code']}">uninstall</a>
+                  [<a href="/admin/total/{$total['code']}">{$langs['button_edit']}</a>]
+                  [<a href="/admin/extension/total/uninstall?code={$total['code']}">{$langs['text_uninstall']}</a>]
                 {else}
-                  <a href="/admin/extension/total/install?code={$total['code']}">install</a>
+                  [<a href="/admin/extension/total/install?code={$total['code']}">{$langs['text_install']}</a>]
                 {/if}
-                ]
               </td>
             </tr>
             {/foreach}

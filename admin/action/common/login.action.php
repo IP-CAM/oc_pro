@@ -6,7 +6,7 @@ class LoginAction extends Action {
 
 	public function index() {
 
-		S('ADMIN_UID') && go('/admin/');
+		S('AID') && go('/admin/');
 
 		if (($_SERVER['REQUEST_METHOD'] == 'POST')) {
 		

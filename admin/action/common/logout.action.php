@@ -4,9 +4,11 @@ class LogoutAction extends AdminAction{
 
 	public function index(){
 
-		S('ADMIN_UID',null);
+		S('AID',null);
 
 		S('ADMIN',null);
+
+		C('ADMINLOGGED',null);
 
 		unset($_SESSION);
 

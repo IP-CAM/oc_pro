@@ -6,6 +6,6 @@ class OrderAction extends AdminAction {
 
   	public function index() {
 
-  		
+  		$this->display('sale/order_list');
   	}
 }

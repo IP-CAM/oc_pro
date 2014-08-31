@@ -2,8 +2,8 @@
 
 header('Content-type:text/html;charset=utf-8');
 
-// error_reporting(E_ALL & ~E_NOTICE);
-error_reporting(E_ALL);
+error_reporting(E_ALL & ~E_NOTICE);
+// error_reporting(E_ALL);
 
 date_default_timezone_set('Asia/Shanghai');
 
@@ -13,9 +13,9 @@ $folder=isset($_REQUEST['f'])?strtolower($_REQUEST['f']).'/':'common/';
 
 include_once(ROOT.'/core/config.php');
 
-ini_set('session.cookie_domain',COOKIE_DOMAIN);
+// ini_set('session.cookie_domain',COOKIE_DOMAIN);
 
-#session_save_path(ROOT.'/session');
+session_save_path(SESSION);
 
 session_start();
 

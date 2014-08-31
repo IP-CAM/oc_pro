@@ -11,8 +11,6 @@ class Address extends Medium{
 
 	public function run($action,$data){
 
-		if(!P('checkLogin')) return false;
-	
 		switch ($action) {
 		
 			case 'add':return $this->add($data);break;

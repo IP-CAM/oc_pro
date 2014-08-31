@@ -27,3 +27,11 @@ function P($class,$data=array()){
 	$instance=new $classname;
 	return $instance->run($data);
 }
+
+function isLogged(){
+	return !!getLoggedID();
+}
+
+function getLoggedID(){
+	return defined('IS_ADMIN')?S('AID'):S('UID');
+}
