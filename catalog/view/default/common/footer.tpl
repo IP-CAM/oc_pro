@@ -1,24 +1,8 @@
-</div>
-<!-- end row -->
-</div>
-<!-- end container -->
-{foreach from=$footer_container item=container}
-	{$container};
-{/foreach}
-
-<div id="footer">
-    <div class="container">
-        <hr class="hidden-xs" />
-       
+ <!--begin footer-->
+    <div class="wdiv footer">
+      <div class="foot1"><a href="#">关于快推网络</a>|<a href="#">合作商家</a>|<a href="#">使用帮助</a>|<a href="#">用户反馈</a></div>
+        <div class="foot2">Copyright@2013&nbsp;&nbsp;fastty.com快推网版权所有&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;鲁ICP备12023078-1号</div>
     </div>
-</div>
-<div id="goTop">
-    <a href="javascript:;" >
-        <i class="icon-gotop"></i>
-    </a>
-</div>
-
-</div>
-<!-- end #page -->
+    <!--end  footer-->
 </body>
 </html>

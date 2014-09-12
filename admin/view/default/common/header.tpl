@@ -50,15 +50,7 @@
           <li id="sale" class="{$selected['sale']}"><a class="top">{$langs['text_sale']}</a>
             <ul>
               <li><a href="{$order}">{$langs['text_order']}</a></li>
-              <li><a class="parent">{$langs['text_customer']}</a>
-                <ul>
-                  <li><a href="{$customer}">{$langs['text_customer']}</a></li>
-                  <li><a href="{$customer_group}">{$langs['text_customer_group']}</a></li>
-                  <li><a href="{$customer_ban_ip}">{$langs['text_customer_ban_ip']}</a></li>
-                </ul>
-              </li>
-              <li><a href="{$coupon}">{$langs['text_coupon']}</a></li>
-              <!-- PAYPAL MANAGE NAVIGATION LINK END -->
+              <li><a href="{$customer}">{$langs['text_customer']}</a></li>
             </ul>
           </li>
           <li id="system" class="{$selected['setting']}"><a class="top">{$langs['text_system']}</a>
