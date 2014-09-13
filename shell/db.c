@@ -16,6 +16,9 @@ MYSQL_RES *select(const char *sql){
 		if(!status){
 			MYSQL_RES *res=mysql_store_result(&mysql);
 			return res;
+		}else{
+			perror(sql);
+			printf("%s\n", mysql_error(&mysql));
 		}
 	}
 	return NULL;
@@ -87,4 +90,12 @@ int query(const char *sql){
 		mysql_close(&mysql);
 	}
 	return -1;
+}
+
+void free_res(MYSQL_RES *res){
+	mysql_free_result(res);
+}
+
+void close(MYSQL *mysql){
+	mysql_close(mysql);
 }

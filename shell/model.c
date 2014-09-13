@@ -3,44 +3,48 @@
 #include "model.h"
 #include "dict.h"
 
-
-int parse_sql_where(st_sql_where **stwhere,char *where){
-	while(*stwhere){
-		printf("%s\n", (*stwhere)->name);
-		sprintf(where," AND %s = '%s'",(*stwhere)->name,(*stwhere)->value);
-		stwhere++;
-	}
-	printf("%s\n", where);
-	return 0;
-}
-
 char *cat_sql_where(const char *name,const char *value,char *where){
-	char tmp[125];
-	sprintf(tmp," AND %s = '%s'",name,value);
+	char tmp[128];
+	sprintf(tmp," %s = '%s'",name,value);
+	if(strlen(where)) strcat(where," AND ");
+	if(strlen(where)==0) strcat(where," WHERE ");
 	return strcat(where,tmp);
 }
 
+char *cat_sql_sort(const char *field,const char *sort,char * order){
+	char tmp[128];
+	sprintf(tmp,"%s %s",field,sort);
+	if(strlen(order)) strcat(order,",");
+	if(strlen(order)==0) strcat(order," ORDER BY ");
+	return strcat(order,tmp);
+}
+
+char *cat_sql_group(const char *field,const char *having,char * group){
+	sprintf(group," GROUP BY %s ",field);
+	return group;
+}
+
+char *cat_sql_limit(const char *value,char * limit){
+	sprintf(limit," LIMIT %s",value);
+	return limit;
+}
+
 int parse_select_sql(st_select_sql *stsql,char *sql){
-	sprintf(sql,"SELECT %s FROM %s%s WHERE 1 %s",stsql->select,DBPRE,stsql->from,stsql->where);
+	sprintf(sql,"SELECT %s FROM %s%s%s%s%s%s",stsql->select,DBPRE,stsql->from,stsql->where,stsql->group,stsql->order,stsql->limit);
+	printf("%s\n", sql);
 	return 0;
 }
 
 void print_sql_result(MYSQL_RES *res){
 	unsigned int field_count=res->field_count;
 	my_ulonglong row_count=res->row_count;
-	char *columns[row_count+5][field_count];
-	int maxlen[row_count];
-	for (int i = 0; i < field_count; ++i)
-	{
-		columns[0][i]="+++++++++";
-		columns[2][i]="+++++++++";
-		columns[3][i]="+++++++++";
-	}
+	char *columns[row_count+4][field_count];
+	int maxlen[field_count];
 	for (int i = 0; i < field_count; ++i){
 		maxlen[i]=strlen(res->fields[i].name);
 		columns[1][i]=res->fields[i].name;
 	}
-	int j=4;
+	int j=3;
 	MYSQL_ROWS *row=res->data_cursor;
 	do{
 		for (int i = 0; i < field_count; ++i){
@@ -49,14 +53,23 @@ void print_sql_result(MYSQL_RES *res){
 		}
 		j++;
 	}while((row=row->next)!=NULL);
-	// printf("%s\n", "columns");
-	for (int i = 0; i < row_count+5; ++i){
-		char *longstr={"|"};
+
+	for (int i = 0; i < row_count+4; ++i){
 		for (int f = 0; f < field_count; ++f){
-			printf("| %s ", columns[i][f]);
+			if(i==0 || i==2 || i==row_count+3){
+				char *top=(char*)malloc(sizeof(char)*maxlen[f]);
+				strpad(top,maxlen[f],"-");
+				printf("+ %s ", top);
+			}else{
+				char * tmpvalue=(char*)malloc(sizeof(char)*maxlen[f]);
+				strcat(tmpvalue,columns[i][f]);
+				strpad(tmpvalue,maxlen[f]," ");
+				printf("| %s ", tmpvalue);
+			}
 		}
-		
-		// printf("%s\n", columns[i][1]);
-		printf("%s\n", longstr);
+		if(i==0 || i==2 || i==row_count+3)
+			printf("%s\n", "+");
+		else
+			printf("%s\n", "|");
 	}
 }

@@ -28,3 +28,12 @@ int end_with(char *str,char *suffix){
 	if(len<suflen) return 0;
 	return !strcmp(str+len-suflen,suffix);
 }
+
+char *strpad(char *str,int total,const char *padding){
+	if(strlen(str)>=total) return str;
+	for (int i = strlen(str); i < total; ++i)
+	{
+		strcat(str,padding);
+	}
+	return str;
+}
