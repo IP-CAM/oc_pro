@@ -25,14 +25,13 @@ struct st_select_sql{
 
 typedef struct st_select_sql st_select_sql;
 
-struct st_sql_set{
-
-};
-
 struct st_update_sql{
-	char *from;
-	char *set;
+	const char *from;
+	const char *set;
+	const char *where;
 };
+
+typedef struct st_update_sql st_update_sql;
 
 struct st_result{
 	char *field;
@@ -45,7 +44,9 @@ extern char *cat_sql_where(const char *name,const char *value,char *where);
 char *cat_sql_sort(const char *field,const char *sort,char * order);
 char *cat_sql_limit(const char *value,char * limit);
 char *cat_sql_group(const char *field,const char *having,char * group);
-extern int parse_select_sql(st_select_sql *stsql,char *sql);
+char *cat_sql_set(const char *field,const char *value,char * set);
+extern char *parse_select_sql(st_select_sql *stsql,char *sql);
+extern char *parse_update_sql(st_update_sql *stsql,char *sql);
 extern void print_sql_result(MYSQL_RES *res);
 
 

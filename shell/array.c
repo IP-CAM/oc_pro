@@ -28,3 +28,13 @@ int array_compare(char **array1,char **array2){
 	}
 	return 0;
 }
+
+char *implode(const char *glue,const char **array,char *str){
+	while(*array){
+		if(strlen(str)) strcat(str,glue);
+		printf("%s\n", *array);
+		strcat(str,*array);
+		array++;
+	}
+	return str;
+}

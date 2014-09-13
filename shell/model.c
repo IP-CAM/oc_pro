@@ -29,10 +29,23 @@ char *cat_sql_limit(const char *value,char * limit){
 	return limit;
 }
 
-int parse_select_sql(st_select_sql *stsql,char *sql){
+char *cat_sql_set(const char *field,const char *value,char * set){
+	char tmp[512];
+	sprintf(tmp," %s='%s' ",field,value);
+	if(strlen(set)) strcat(set,",");
+	return strcat(set,tmp);
+}
+
+
+char *parse_select_sql(st_select_sql *stsql,char *sql){
 	sprintf(sql,"SELECT %s FROM %s%s%s%s%s%s",stsql->select,DBPRE,stsql->from,stsql->where,stsql->group,stsql->order,stsql->limit);
 	printf("%s\n", sql);
 	return 0;
+}
+
+char *parse_update_sql(st_update_sql *stsql,char *sql){
+	sprintf(sql,"UPDATE %s%s SET %s%s",DBPRE,stsql->from,stsql->set,stsql->where);
+	return sql;
 }
 
 void print_sql_result(MYSQL_RES *res){

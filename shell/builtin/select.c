@@ -9,7 +9,7 @@
 
 const char* about_select_usage="about select -t|--table table-name --select  <options>";
 
-int check_cmd_args(int argc,const char **argv){
+static int check_cmd_args(int argc,const char **argv){
 	if(!in_array("--table",argv,argc) && !in_array("-t",argv,argc)){
 		usage(about_select_usage);
 	}
@@ -89,17 +89,5 @@ int cmd_select(int argc,const char **argv){
 	MYSQL_RES *res=select(sql);
 	print_sql_result(res);
 	free_res(res);
-	// dict_t **res=find(sql);
-	// for (int i = 0, rows=20; i < rows; ++i)
-	// {
-	// 	char *k, *v;
-		
-	// 	for (int j = 0,fields=dict_size(*res); j < fields; ++j,res++)
-	// 	{
-	// 		while(dict_iter(*res,&k,(void**)&v)){
-	// 			printf("%s => %s\n", k, v);
-	// 		}
-	// 	}
-	// }
 	return 0;
 }
