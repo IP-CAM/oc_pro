@@ -42,6 +42,6 @@ typedef struct st_result st_result;
 extern int parse_sql_where(st_sql_where **stwhere,char *where);
 extern char *cat_sql_where(const char *name,const char *value,char *where);
 extern int parse_select_sql(st_select_sql *stsql,char *sql);
-extern void print_result();
+extern void print_sql_result(MYSQL_RES *res);
 
 

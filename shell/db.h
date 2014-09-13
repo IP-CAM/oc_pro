@@ -34,9 +34,9 @@ typedef struct st_sql_result *st_sql_result;
 
 
 extern int connect();
-extern dict_t *find(const char *sql);
+extern dict_t **find(const char *sql);
 extern int query(const char *sql);
-extern st_sql_result get(const char *sql);
+extern MYSQL_RES *select(const char *sql);
+extern MYSQL_ROW get(const char *sql);
 extern void close();
-// extern void list(MYSQL_ROW *rows);
 #endif

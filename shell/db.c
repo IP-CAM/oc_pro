@@ -10,14 +10,26 @@ int connect(){
 	return 0;
 }
 
-dict_t *find(const char *sql){
+MYSQL_RES *select(const char *sql){
+	if(!connect()){
+		int status=mysql_query(&mysql,sql);
+		if(!status){
+			MYSQL_RES *res=mysql_store_result(&mysql);
+			return res;
+		}
+	}
+	return NULL;
+}
+
+
+dict_t **find(const char *sql){
 	if(!connect()){
 		int status=mysql_query(&mysql,sql);
 		if(!status){
 			MYSQL_RES *res=mysql_store_result(&mysql);
 			int fc=mysql_field_count(&mysql);
 			int rc=mysql_num_rows(res);
-			dict_t *result=(dict_t*)calloc(sizeof(dict_t),rc*fc);
+			dict_t **result=(dict_t **)calloc(sizeof(dict_t),rc*fc);
 			if(res){
 				MYSQL_FIELD *fields=mysql_fetch_fields(res);
 				for (int i = 0; i < rc; ++i){

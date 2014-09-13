@@ -21,6 +21,7 @@ int cmd_select(int argc,const char **argv){
 	check_cmd_args(argc,argv);
 
 	st_select_sql *stsql=(st_select_sql*)malloc(sizeof(st_select_sql));
+	stsql->select="*";
 	char where[256]={};
 	while(*argv){
 		if(!strcmp(*argv,"--table") || !strcmp(*argv,"-t")){
@@ -44,33 +45,19 @@ int cmd_select(int argc,const char **argv){
 	stsql->where=where;
 	char sql[512];
 	parse_select_sql(stsql,sql);
-	dict_t **res=find(sql);
-	for (int i = 0, rows=dict_size(*res); i < rows; ++i)
-	{
-		char *k, *v;
+	MYSQL_RES *res=select(sql);
+	print_sql_result(res);
+	// dict_t **res=find(sql);
+	// for (int i = 0, rows=20; i < rows; ++i)
+	// {
+	// 	char *k, *v;
 		
-		for (int j = 0,fields=dict_size(res[i]); j < fields; ++j)
-		{
-			dict_get(*(res+i*rows+j),k,(void**)v);
-			printf("%s\n", v);
-		}
-	}
-	// st_sql_cell cell=res->cell;
-	// while(*cell){
-	// 	printf("%s\n", *cell->field);
-	// 	cell++;
-	// }
-	// for (int i = 0, count=res->rows; i < count; ++i)
-	// {
-	// 	for(int j=0,fields=res->fields; j<fields; j++){
-	// 		printf("%s\n", res->cell[i][j].field);
-	// 		printf("%s\n", res->cell[i][j].value);
+	// 	for (int j = 0,fields=dict_size(*res); j < fields; ++j,res++)
+	// 	{
+	// 		while(dict_iter(*res,&k,(void**)&v)){
+	// 			printf("%s => %s\n", k, v);
+	// 		}
 	// 	}
-	// }
-	// for (int i = 0; i < count(res); ++i)
-	// {
-	// 	printf("%s\n", rows[i][0]);
-	// 	printf("%s\n", rows[i][1]);
 	// }
 	return 0;
 }
