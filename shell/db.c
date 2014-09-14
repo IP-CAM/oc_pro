@@ -92,6 +92,18 @@ int query(const char *sql){
 	return -1;
 }
 
+int insert(const char *sql){
+	if(!connect()){
+		int status=mysql_query(&mysql,sql);
+		if(!status){
+			return mysql_insert_id(&mysql);
+		}
+		printf("%s\n", mysql_error(&mysql));
+		mysql_close(&mysql);
+	}
+	return -1;
+}
+
 void free_res(MYSQL_RES *res){
 	mysql_free_result(res);
 }

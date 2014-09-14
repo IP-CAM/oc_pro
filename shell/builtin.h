@@ -14,6 +14,7 @@ extern int is_builtin(const char*);
 
 extern int cmd_update(int argc,const char **argv);
 extern int cmd_select(int argc,const char **argv);
+extern int cmd_insert(int argc,const char **argv);
 
 
 #endif

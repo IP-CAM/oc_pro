@@ -48,6 +48,19 @@ char *parse_update_sql(st_update_sql *stsql,char *sql){
 	return sql;
 }
 
+char *parse_insert_sql(st_insert_sql *stsql,char *sql){
+	sprintf(sql,"INSERT INTO %s%s SET %s",DBPRE,stsql->from,stsql->set);
+	return sql;
+}
+
+char *get_primary_key(const char *table){
+	char sql[256];
+	sprintf(sql,"SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE table_schema='%s' and table_name='%s%s' and extra='auto_increment'",DBNAME,DBPRE,table);
+	MYSQL_RES *res=select(sql);
+	if(!res) return "";
+	return res->data_cursor->data[0];
+}
+
 void print_sql_result(MYSQL_RES *res){
 	unsigned int field_count=res->field_count;
 	my_ulonglong row_count=res->row_count;

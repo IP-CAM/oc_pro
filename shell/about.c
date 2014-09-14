@@ -12,6 +12,7 @@ const char* about_usage_string =
 builtin_cmd cmds[]={
 	{"update",cmd_update},
 	{"select",cmd_select},
+	{"insert",cmd_insert},
 };
 
 int builtin_cmd_count=count(cmds);
@@ -28,6 +29,8 @@ int run_builtin(int argc,const char** argv,const builtin_cmd cmd){
 	if(!strcmp(*argv,"update")){
 		cmd.fn(argc-1,argv+1);
 	}else if(!strcmp(*argv,"select")){
+		cmd.fn(argc-1,argv+1);
+	}else if(!strcmp(*argv,"insert")){
 		cmd.fn(argc-1,argv+1);
 	}
 	return 1;

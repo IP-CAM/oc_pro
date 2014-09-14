@@ -1,19 +1,5 @@
 #include "db.h"
 
-struct st_sql_where{
-	const char *name;
-	const char *value;
-};
-
-typedef struct st_sql_where st_sql_where;
-
-struct st_sql_sort{
-	char *name;
-	char *value;
-};
-
-typedef struct st_sql_sort st_sql_sort;
-
 struct st_select_sql{
 	const char *select;
 	const char *from;
@@ -33,12 +19,13 @@ struct st_update_sql{
 
 typedef struct st_update_sql st_update_sql;
 
-struct st_result{
-	char *field;
-	char *value;
+struct st_insert_sql{
+	const char *from;
+	const char *set;
 };
 
-typedef struct st_result st_result;
+typedef struct st_insert_sql st_insert_sql;
+
 
 extern char *cat_sql_where(const char *name,const char *value,char *where);
 char *cat_sql_sort(const char *field,const char *sort,char * order);
@@ -47,6 +34,8 @@ char *cat_sql_group(const char *field,const char *having,char * group);
 char *cat_sql_set(const char *field,const char *value,char * set);
 extern char *parse_select_sql(st_select_sql *stsql,char *sql);
 extern char *parse_update_sql(st_update_sql *stsql,char *sql);
+extern char *parse_insert_sql(st_insert_sql *stsql,char *sql);
+extern char *get_primary_key(const char *table);
 extern void print_sql_result(MYSQL_RES *res);
 
 

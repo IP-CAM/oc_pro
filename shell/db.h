@@ -37,6 +37,7 @@ extern int connect();
 extern dict_t **find(const char *sql);
 extern int query(const char *sql);
 extern MYSQL_RES *select(const char *sql);
+extern int insert(const char *sql);
 extern MYSQL_ROW get(const char *sql);
 void free_res(MYSQL_RES *res);
 extern void close();
