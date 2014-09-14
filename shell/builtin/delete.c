@@ -31,6 +31,8 @@ int cmd_delete(int argc,const char **argv){
 			argv++;
 		}else if(!start_with(*argv,"--")){
 			const char *name=*argv+2;
+			if(!strcmp(name,"id"))
+				name=get_primary_key(from);
 			argv++;
 			const char *value=*argv;
 			cat_sql_where(name,value,where);

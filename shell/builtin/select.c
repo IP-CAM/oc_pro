@@ -33,15 +33,17 @@ int cmd_select(int argc,const char **argv){
 	st_select_sql *stsql=(st_select_sql*)malloc(sizeof(st_select_sql));
 	stsql->select="*";
 	stsql->limit=" LIMIT 20";
+	char *from="";
 	char where[256]={""};
 	char order[128]={""};
 	char limit[16]={""};
 	char group[64]={""};
+
 	int has_limit=has_cmd_args(argv,"limit");
 	while(*argv){
 		if(!strcmp(*argv,"--table") || !strcmp(*argv,"-t")){
 			argv++;
-			stsql->from=*argv;
+			from=(char*)*argv;
 			argv++;
 		}else if(!strcmp(*argv,"--select")){
 			argv++;
@@ -73,6 +75,8 @@ int cmd_select(int argc,const char **argv){
 			}
 		}else if(!start_with(*argv,"--")){
 			const char *name=*argv+2;
+			if(!strcmp(name,"id"))
+				name=get_primary_key(from);
 			argv++;
 			const char *value=*argv;
 			cat_sql_where(name,value,where);
@@ -81,6 +85,7 @@ int cmd_select(int argc,const char **argv){
 			argv++;
 		}
 	}
+	stsql->from=from;
 	stsql->where=where;
 	stsql->order=order;
 	stsql->group=group;

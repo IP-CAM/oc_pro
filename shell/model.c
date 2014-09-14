@@ -79,8 +79,12 @@ void print_sql_result(MYSQL_RES *res){
 	MYSQL_ROWS *row=res->data_cursor;
 	do{
 		for (int i = 0; i < field_count; ++i){
-			if(maxlen[i]<strlen(row->data[i])) maxlen[i]=strlen(row->data[i]);
-			columns[j][i]=row->data[i];
+			if(row->data[i]){
+				if(maxlen[i]<strlen(row->data[i])) maxlen[i]=strlen(row->data[i]);	
+				columns[j][i]=row->data[i];
+			}else{
+				columns[j][i]="";
+			}
 		}
 		j++;
 	}while((row=row->next)!=NULL);
