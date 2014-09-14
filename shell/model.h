@@ -26,6 +26,12 @@ struct st_insert_sql{
 
 typedef struct st_insert_sql st_insert_sql;
 
+struct st_delete_sql{
+	const char *from;
+	const char *where;
+};
+
+typedef struct st_delete_sql st_delete_sql;
 
 extern char *cat_sql_where(const char *name,const char *value,char *where);
 char *cat_sql_sort(const char *field,const char *sort,char * order);
@@ -35,6 +41,7 @@ char *cat_sql_set(const char *field,const char *value,char * set);
 extern char *parse_select_sql(st_select_sql *stsql,char *sql);
 extern char *parse_update_sql(st_update_sql *stsql,char *sql);
 extern char *parse_insert_sql(st_insert_sql *stsql,char *sql);
+extern char *parse_delete_sql(st_delete_sql *stsql,char *sql);
 extern char *get_primary_key(const char *table);
 extern void print_sql_result(MYSQL_RES *res);
 
