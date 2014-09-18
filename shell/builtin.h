@@ -16,6 +16,8 @@ extern int cmd_update(int argc,const char **argv);
 extern int cmd_select(int argc,const char **argv);
 extern int cmd_insert(int argc,const char **argv);
 extern int cmd_delete(int argc,const char **argv);
+extern int cmd_log(int argc,const char **argv);
+extern int cmd_show(int argc,const char **argv);
 
 
 #endif

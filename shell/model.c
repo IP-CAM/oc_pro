@@ -36,6 +36,15 @@ char *cat_sql_set(const char *field,const char *value,char * set){
 	return strcat(set,tmp);
 }
 
+char *cat_sql_like(const char *search,char* like){
+	sprintf(like," LIKE \"%s\"",search);
+	return like;
+}
+
+char *cat_sql_columns(const char *search,char* like){
+	sprintf(like," FROM %s",search);
+	return like;
+}
 
 char *parse_select_sql(st_select_sql *stsql,char *sql){
 	sprintf(sql,"SELECT %s FROM %s%s%s%s%s%s",stsql->select,DBPRE,stsql->from,stsql->where,stsql->group,stsql->order,stsql->limit);
@@ -58,6 +67,11 @@ char *parse_delete_sql(st_delete_sql *stsql,char *sql){
 	return sql;
 }
 
+char *parse_show_sql(st_show_sql *stsql,char *sql){
+	sprintf(sql,"SHOW %s %s %s",stsql->type,stsql->table,stsql->like);
+	return sql;
+}
+
 char *get_primary_key(const char *table){
 	char sql[256];
 	sprintf(sql,"SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE table_schema='%s' and table_name='%s%s' and extra='auto_increment'",DBNAME,DBPRE,table);
@@ -69,6 +83,10 @@ char *get_primary_key(const char *table){
 void print_sql_result(MYSQL_RES *res){
 	unsigned int field_count=res->field_count;
 	my_ulonglong row_count=res->row_count;
+	if(row_count==0){
+		printf("%s\n", "no rows");
+		exit(0);
+	}
 	char *columns[row_count+4][field_count];
 	int maxlen[field_count];
 	for (int i = 0; i < field_count; ++i){

@@ -8,11 +8,6 @@ void usage(const char* usage_string){
 }
 
 int start_with(char *str,char *pre){
-	// int len=strlen(str),prelen=strlen(pre);
-	// if(len<prelen) return 0;
-	// char str2[prelen];
-	// strncpy(str2,str,prelen);
-	// return !strcmp(str2,pre);
 	for (;;str++,pre++)
 	{
 		if(!*pre){

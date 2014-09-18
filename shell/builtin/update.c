@@ -1,8 +1,7 @@
-#include <stdio.h>
-#include <string.h>
 #include "model.h"
 #include "common.h"
 #include "array.h"
+#include "log.h"
 
 const char* about_update_usage="about update -t|--table tablename <options>";
 
@@ -75,6 +74,8 @@ int cmd_update(int argc,const char** argv){
 	if(confirm!=121 && confirm!=89) exit(0);
 
 	query(sql);
+
+	sqllog("update",sql);
 
 	free(stsql);
 

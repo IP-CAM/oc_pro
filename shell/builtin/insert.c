@@ -1,8 +1,6 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include "model.h"
 #include "array.h"
+#include "log.h"
 
 const char *about_insert_usage="about insert -t|--table table-name  <options>";
 
@@ -56,12 +54,14 @@ int cmd_insert(int argc,const char **argv){
 
 	int id=insert(sql);
 
+	sqllog("select",sql);
+
 	free(stsql);
 
 	stsql=NULL;
 
 	char *primarykey=get_primary_key(from);
-	
+
 	sprintf(where," WHERE %s=%d ",primarykey,id);
 
 	st_select_sql *slsql=(st_select_sql*)malloc(sizeof(st_select_sql));

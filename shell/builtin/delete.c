@@ -1,8 +1,6 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include "model.h"
 #include "array.h"
+#include "log.h"
 
 const char *about_delete_usage="about insert -t|--table table-name  <options>";
 
@@ -70,6 +68,8 @@ int cmd_delete(int argc,const char **argv){
 	if(confirm!=121 && confirm!=89) exit(0);
 
 	int id=insert(sql);
+
+	sqllog("insert",sql);
 
 	free(stsql);
 
