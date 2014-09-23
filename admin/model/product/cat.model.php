@@ -1,6 +1,6 @@
 <?php
 
-class CategoryMysql extends MysqlModel{
+class CatMysql extends MysqlModel{
 
 	public function index(){
 		

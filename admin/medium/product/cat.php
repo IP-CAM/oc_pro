@@ -1,6 +1,6 @@
 <?php
 
-class Category extends Medium{
+class Cat extends Medium{
 
 	public function run($action,$data){
 	
@@ -19,7 +19,7 @@ class Category extends Medium{
 
 		$GLOBALS['USE_CATALOG']=1;
 
-		return SEA::product('category','getAllCategories',array());
+		return SEA::product('cat','getAllCat',array());
 	}
 
 	private function get($data){
@@ -28,7 +28,7 @@ class Category extends Medium{
 
 		$GLOBALS['USE_CATALOG']=1;
 
-		return SEA::product('category','getCategory_v2',array($data['cid']));
+		return SEA::product('cat','getCat_v2',array($data['cid']));
 	}
 
 	private function child($data){
@@ -37,6 +37,6 @@ class Category extends Medium{
 
 		$GLOBALS['USE_CATALOG']=1;
 
-		return SEA::product('category','getChildCategories',array($data['pid']));
+		return SEA::product('cat','getChildCat',array($data['pid']));
 	}
 }

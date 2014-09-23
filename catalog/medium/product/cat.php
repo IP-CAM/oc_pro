@@ -1,6 +1,6 @@
 <?php
 
-class Category extends Medium{
+class Cat extends Medium{
 
 	public function run($action,$data){
 	
@@ -19,27 +19,27 @@ class Category extends Medium{
 
 	private function top(){
 
-		return SEA::product('category','getTopCategory',array());
+		return SEA::product('cat','getTopCat',array());
 	}
 
 	private function get($data){
 
 		assert(is_integer($data['cid']));
 
-		return SEA::product('category','getCategory_v2',array($data['cid']));
+		return SEA::product('cat','getCat_v2',array($data['cid']));
 	}
 
 	private function getAsync($data){
 
 		assert(is_integer($data['cid']));
 
-		SEA::product('category','getCategory',array($data['sign'],$data['cid']));
+		SEA::product('cat','getCat',array($data['sign'],$data['cid']));
 	}
 
 	private function child($data){
 
 		assert(is_integer($data['pid']));
 
-		return SEA::product('category','getChildCategories',array($data['pid']));
+		return SEA::product('cat','getChildCat',array($data['pid']));
 	}
 }

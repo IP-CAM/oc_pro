@@ -37,7 +37,7 @@ char *cat_sql_set(const char *field,const char *value,char * set){
 }
 
 char *cat_sql_like(const char *search,char* like){
-	sprintf(like," LIKE \"%s\"",search);
+	sprintf(like," LIKE '%s%s%s' ","%",search,"%");
 	return like;
 }
 
@@ -68,7 +68,7 @@ char *parse_delete_sql(st_delete_sql *stsql,char *sql){
 }
 
 char *parse_show_sql(st_show_sql *stsql,char *sql){
-	sprintf(sql,"SHOW %s %s %s",stsql->type,stsql->table,stsql->like);
+	sprintf(sql,"SHOW %s %s%s",strtoupper(stsql->type),strtoupper(stsql->table),stsql->like);
 	return sql;
 }
 
@@ -80,7 +80,7 @@ char *get_primary_key(const char *table){
 	return res->data_cursor->data[0];
 }
 
-void print_sql_result(MYSQL_RES *res){
+void print_sql_result(MYSQL_RES *res,int show_header_bottom){
 	unsigned int field_count=res->field_count;
 	my_ulonglong row_count=res->row_count;
 	if(row_count==0){
@@ -110,19 +110,22 @@ void print_sql_result(MYSQL_RES *res){
 	for (int i = 0; i < row_count+4; ++i){
 		for (int f = 0; f < field_count; ++f){
 			if(i==0 || i==2 || i==row_count+3){
+				if(!show_header_bottom) continue;
 				char *top=(char*)malloc(sizeof(char)*maxlen[f]);
 				strpad(top,maxlen[f],"-");
 				printf("+ %s ", top);
 			}else{
+				if(i==1 && !show_header_bottom) continue;
 				char * tmpvalue=(char*)malloc(sizeof(char)*maxlen[f]);
 				strcat(tmpvalue,columns[i][f]);
 				strpad(tmpvalue,maxlen[f]," ");
 				printf("| %s ", tmpvalue);
 			}
 		}
-		if(i==0 || i==2 || i==row_count+3)
-			printf("%s\n", "+");
-		else
+		if(i==0 || i==2 || i==row_count+3){
+			if(show_header_bottom)
+				printf("%s\n", "+");
+		}else
 			printf("%s\n", "|");
 	}
 }

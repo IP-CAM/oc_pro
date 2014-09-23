@@ -29,7 +29,7 @@
           <li id="catalog" class="{$selected['product']}"><a class="top">{$langs['text_product']}</a>
             <ul>
               <li><a href="{$category}">{$langs['text_category']}</a></li>
-              <li><a href="{$product}">{$langs['text_product']}</a></li>
+              <li><a href="{$product}">{$langs['text_item']}</a></li>
               <li><a class="parent">{$langs['text_attribute']}</a>
                 <ul>
                   <li><a href="{$attribute}">{$langs['text_attribute']}</a></li>

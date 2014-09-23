@@ -33,16 +33,17 @@ int cmd_show(int argc,const char **argv){
 	char like[50];
 	const char *table="";
 	char sql[125];
+	int show_header_bottom=1;
 
 	while(*argv){
-		if(!strcmp(*argv,"--tables")){
-			stsql->type=*argv+2;
+		if(!strcmp(*argv,"--tables") || !strcmp(*argv,"-t")){
+			stsql->type="TABLES";
 			argv++;
-		}else if(!strcmp(*argv,"--columns")){
-			const char *t=*argv+2;
+		}else if(!strcmp(*argv,"--columns") || !strcmp(*argv,"-c")){
+			const char *t="COLUMNS";
 			argv++;
-			if(!start_with(*argv,"--")){
-				usage("about show --columns table-name");
+			if(!*argv || !start_with(*argv,"--")){
+				usage("about show --[columns|c] table-name");
 			}
 			sprintf(type,"%s FROM %s%s",t,DBPRE,*argv);
 			stsql->type=type;
@@ -56,10 +57,32 @@ int cmd_show(int argc,const char **argv){
 			sprintf(type,"%s TABLE %s%s",t,DBPRE,*argv);
 			stsql->type=type;
 			argv++;
-		}else if(!strcmp(*argv,"--variables")){
-			stsql->type=*argv+2;
+			show_header_bottom=0;
+		}else if(!strcmp(*argv,"--variables") || !strcmp(*argv,"-v")){
+			stsql->type="VARIABLES";
 			argv++;
-		}else if(!strcmp(*argv,"--like")){
+		}else if(!strcmp(*argv,"--index") || !strcmp(*argv,"-i")){
+			const char *t="INDEXES";
+			argv++;
+			if(!start_with(*argv,"--")){
+				usage("about show --columns table-name");
+			}
+			sprintf(type,"%s FROM %s%s",t,DBPRE,*argv);
+			stsql->type=type;
+			argv++;
+		}else if(!strcmp(*argv,"--process") || !strcmp(*argv,"-p")){
+			const char *t="PROCESSLIST";
+			argv++;
+			if(*argv){
+				if(!strcmp("--full",*argv) || !strcmp("-f",*argv)){
+					sprintf(type,"FULL %s",t);
+				}
+				argv++;
+			}else{
+				sprintf(type,"%s",t);
+			}
+			stsql->type=type;
+		}else if(!strcmp(*argv,"--grep") || !strcmp(*argv,"-g")){
 			argv++;
 			cat_sql_like(*argv,like);
 			argv++;
@@ -70,8 +93,9 @@ int cmd_show(int argc,const char **argv){
 	stsql->table=table;
 	stsql->like=like;
 	parse_show_sql(stsql,sql);
+	printf("%s\n", sql);
 	MYSQL_RES *res=select(sql);
-	print_sql_result(res);
+	print_sql_result(res,show_header_bottom);
 	free_res(res);
 	return 0;
 }

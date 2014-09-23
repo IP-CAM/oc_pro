@@ -12,9 +12,9 @@ MYSQL_FIELD *field;
 
 #define DBHOST "127.0.0.1"
 #define DBPORT 3360
-#define DBUSER "team"
-#define DBPWD  "team"
-#define DBNAME "test"
+#define DBUSER "about"
+#define DBPWD  "about"
+#define DBNAME "about"
 #define DBPRE  "oc_"
 
 struct st_sql_cell{

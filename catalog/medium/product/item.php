@@ -2,7 +2,7 @@
 
 // store:mysql && sphinx
 
-class Product extends Medium{
+class Item extends Medium{
 
 	public function run($action,$data){
 
@@ -17,19 +17,19 @@ class Product extends Medium{
 
 	private function detail($data){
 
-		$product_id=$data['product_id'];
+		$iid=$data['iid'];
 
-		$product=SEA::product('product','getProduct_v2',array($product_id));
+		$item=SEA::product('item','getItem_v2',array($iid));
 
-		return $product;
+		return $item;
 	}
 
 	private function detailAsync($data){
 
 		$sign=$data['sign'];
 
-		$product_id=$data['product_id'];
+		$iid=$data['iid'];
 
-		SEA::product('product','getProduct',array($sign,$product));
+		SEA::product('item','getItem',array($sign,$iid));
 	}
 }

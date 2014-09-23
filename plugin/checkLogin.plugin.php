@@ -33,7 +33,7 @@ class CheckLoginPlugin extends Plugin{
 					$userinfo=SEA::account('user','get.by.uid',array('uid'=>$array[2]));
 				if(!empty($userinfo)){
 					$this->_setSession($userinfo);
-					$this->_setCookie($userinfo['user_id']);
+					$this->_setCookie($userinfo['uid']);
 					return 1;
 				}
 			}
@@ -44,7 +44,7 @@ class CheckLoginPlugin extends Plugin{
 
 	private function _setSession($user){
 		S($this->session_user,$user);
-		S($this->session_uid,$user['user_id']);
+		S($this->session_uid,$user['uid']);
 	}
 
 	private function _setCookie($uid){

@@ -40,24 +40,17 @@ abstract class DB{
 
 class DBMysql extends DB{
 	
-	CONST HOST='127.0.0.1';
-	CONST USER='root';
-	CONST PWD='mac@mysql';
-	// CONST DB='fastty';
-	CONST DB='test';
-	CONST CHARSET='UTF8';
-	
 	/*
 	*连接
 	*/
 	protected  function connect($connectstring=null){
-		$this->_link=mysql_pconnect(self::HOST,self::USER,self::PWD);
+		$this->_link=mysql_pconnect(MYSQL_H,MYSQL_U,MYSQL_P);
 		if(!mysql_ping($this->_link)){
 			mysql_close($this->_link);
-			$this->_link=mysql_pconnect(self::HOST,self::USER,self::PWD);
+			$this->_link=mysql_pconnect(MYSQL_H,MYSQL_U,MYSQL_P);
 		}
-		mysql_select_db(self::DB,$this->_link);
-		mysql_set_charset(self::CHARSET,$this->_link);
+		mysql_select_db(MYSQL_DB,$this->_link);
+		mysql_set_charset(MYSQL_CHARSET,$this->_link);
 	}
 	/**
 	* 	查询

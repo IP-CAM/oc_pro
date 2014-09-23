@@ -8,5 +8,6 @@ void usage(const char* usage_string);
 extern int start_with(const char* str,const char* pre);
 extern int end_with(const char *str,const char *suffix);
 extern char *strpad(char *str,int total,const char *padding);
+extern char *strtoupper(const char *str);
 
 #endif

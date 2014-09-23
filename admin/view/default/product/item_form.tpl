@@ -291,7 +291,7 @@ $('input[name=\'category\']').autocomplete({
 				response($.map(json, function(item) {
 					return {
 						label: item.name,
-						value: item.category_id
+						value: item.cid
 					}
 				}));
 			}
@@ -408,7 +408,7 @@ $('input[name=\'related\']').autocomplete({
 				response($.map(json, function(item) {
 					return {
 						label: item.name,
-						value: item.product_id
+						value: item.item_id
 					}
 				}));
 			}

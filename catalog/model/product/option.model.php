@@ -9,7 +9,7 @@ class OptionSphinx extends SphinxModel {
 		return $this->one($option_id);
 	}
 					
-	public function getProductOptions($sign,$options) {
+	public function getItemOptions($sign,$options) {
 
 		if(empty($options) || !is_array($options)) return array();
 

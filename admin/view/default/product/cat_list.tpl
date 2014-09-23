@@ -25,17 +25,17 @@
             </tr>
           </thead>
           <tbody>
-            {if $categories}
-              {foreach from=$categories item=category}
+            {if $cats}
+              {foreach from=$cats item=cat}
                 <tr>
                   <td style="text-align: center">
-                      <input type="checkbox" name="selected[]" value="{$category['category_id']}" />
+                      <input type="checkbox" name="selected[]" value="{$cat['cid']}" />
                   </td>
-                  <td class="left">{$category['name']}</td>
-                  <td class="right">{$category['sort_order']}</td>
+                  <td class="left">{$cat['name']}</td>
+                  <td class="right">{$cat['sort']}</td>
                   <td class="right">
-                    [<a href="/admin/product/category/edit">{$langs['button_edit']}</a>]
-                    [<a href="/admin/product/category/delete">{$langs['button_delete']}</a>]
+                    [<a href="/admin/product/cat/edit">{$langs['button_edit']}</a>]
+                    [<a href="/admin/product/cat/delete">{$langs['button_delete']}</a>]
                   </td>
                 </tr>
               {/foreach}

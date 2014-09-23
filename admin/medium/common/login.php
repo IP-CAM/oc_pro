@@ -23,8 +23,10 @@ class Login extends Medium{
 		if(empty($admin)) return 'no this user';
 
 		if($admin['password']!=SHA1($admin['salt'].SHA1($admin['salt'].SHA1($password)))) return 'password error';
+
+		$uid=$admin['uid'];
 		
-		S('ADMIN_UID',$admin['user_id']);
+		S('ADMIN_UID',$uid);
 
 		S('ADMIN',$admin);
 
@@ -32,7 +34,7 @@ class Login extends Medium{
 
 		$time=time();
 
-		$logged="{$_SERVER['HTTP_HOST']};{$ip};{$admin['user_id']};{$time}";
+		$logged="{$_SERVER['HTTP_HOST']};{$ip};{$uid};{$time}";
 		
 		C('ADMINLOGGED',encrypt($logged));
 

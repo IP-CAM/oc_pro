@@ -58,6 +58,6 @@ extern char *parse_insert_sql(st_insert_sql *stsql,char *sql);
 extern char *parse_delete_sql(st_delete_sql *stsql,char *sql);
 extern char *parse_show_sql(st_show_sql *stsql,char *sql);
 extern char *get_primary_key(const char *table);
-extern void print_sql_result(MYSQL_RES *res);
+extern void print_sql_result(MYSQL_RES *res,int print_sql_result);
 
 

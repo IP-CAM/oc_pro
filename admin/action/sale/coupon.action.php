@@ -1,4 +1,5 @@
-<?php  
+<?php
+ 
 class Action extends AdminAction {
 	private $error = array();
      
@@ -451,12 +452,12 @@ class Action extends AdminAction {
 		
 		$this->data['coupon_product'] = array();
 		
-		foreach ($products as $product_id) {
-			$product_info = $this->model_catalog_product->getProduct($product_id);
+		foreach ($products as $item_id) {
+			$product_info = $this->model_catalog_product->getProduct($item_id);
 			
 			if ($product_info) {
 				$this->data['coupon_product'][] = array(
-					'product_id' => $product_info['product_id'],
+					'item_id' => $product_info['item_id'],
 					'name'       => $product_info['name']
 				);
 			}
@@ -474,12 +475,12 @@ class Action extends AdminAction {
 	
 		$this->data['coupon_category'] = array();
 		
-		foreach ($categories as $category_id) {
-			$category_info = $this->model_catalog_category->getCategory($category_id);
+		foreach ($categories as $cid) {
+			$category_info = $this->model_catalog_category->getCategory($cid);
 			
 			if ($category_info) {
 				$this->data['coupon_category'][] = array(
-					'category_id' => $category_info['category_id'],
+					'cid' => $category_info['cid'],
 					'name'        => ($category_info['path'] ? $category_info['path'] . ' &gt; ' : '') . $category_info['name']
 				);
 			}

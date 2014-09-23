@@ -5,7 +5,6 @@ define('CORE', ROOT.'/core/');
 define('CATALOG', ROOT.'/catalog/');
 define('PLUGIN', ROOT.'/plugin/');
 define('STATIC', ROOT.'/static/');
-define('SYSTEM', ROOT.'/system/');
 define('EXTENSION', ROOT.'/extension/');
 define('ADMIN', ROOT.'/admin/');
 define('CACHE', ROOT.'/cache/');
@@ -31,12 +30,8 @@ if (defined('IS_ADMIN')) {
 	define('COOKIE_TIMEOUT',1800); // 30 min
 }
 
-// System
-define('LIBRARY', SYSTEM.'library/');
-
 // extension library 
 define('SMARTY', EXTENSION.'smarty/');
-
 
 // cache
 define('COMPILE_DIR', CACHE.'compile/');

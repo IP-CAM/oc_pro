@@ -94,7 +94,7 @@
               {foreach from=$products item=product}
                 <tr>
                   <td style="text-align: center;">
-                    <input type="checkbox" name="selected[]" value="{$product['product_id']}" />
+                    <input type="checkbox" name="selected[]" value="{$product['item_id']}" />
                   <td class="center">
                     <img src="{$product['image']}" alt="{$product['name']}" style="padding: 1px; border: 1px solid #DDDDDD;" />
                   </td>
@@ -186,7 +186,7 @@ $('input[name=\'filter_name\']').autocomplete({
 				response($.map(json, function(item) {
 					return {
 						label: item.name,
-						value: item.product_id
+						value: item.item_id
 					}
 				}));
 			}
@@ -212,7 +212,7 @@ $('input[name=\'filter_model\']').autocomplete({
 				response($.map(json, function(item) {
 					return {
 						label: item.model,
-						value: item.product_id
+						value: item.item_id
 					}
 				}));
 			}

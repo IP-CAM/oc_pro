@@ -1,12 +1,12 @@
 <?php
 
 // store:mongodb
-// cart:product_id,options,quantity,
-// struct:{product_id:int,options:[color,size],quantity:int}
+// cart:item_id,options,quantity,
+// struct:{item_id:int,options:[color,size],quantity:int}
 
 class Cart extends Medium{
 
-	protected $product_id=0;
+	protected $item_id=0;
 	protected $options=array();
 	protected $quantity=1;
 	protected $cart=array();
@@ -15,7 +15,7 @@ class Cart extends Medium{
 
 		$this->cart=S('cart');
 
-		$this->product_id=$data['product_id'];
+		$this->item_id=$data['item_id'];
 		$this->options=$data['options'];
 		$this->quantity=$action['quantity'];
 
@@ -47,13 +47,13 @@ class Cart extends Medium{
 	private function add(){
 
 		if(empty($this->cart)) 
-			$this->cart[]=array('product_id'=>$this->product_id,'options'=>$this->options,'quantity'=>$this->quantity);
+			$this->cart[]=array('item_id'=>$this->item_id,'options'=>$this->options,'quantity'=>$this->quantity);
 		else
 			foreach ($this->cart as $k => $v) {
-				if($v['product_id']==$this->product_id && $v['options']==$this->options)
+				if($v['item_id']==$this->item_id && $v['options']==$this->options)
 					$this->cart[$k]['quantity']+=$this->quantity;
 				else
-					$this->cart[]=array('product_id'=>$this->product_id,'options'=>$this->options,'quantity'=>$this->quantity);
+					$this->cart[]=array('item_id'=>$this->item_id,'options'=>$this->options,'quantity'=>$this->quantity);
 			}
 
 		$this->update();
@@ -61,10 +61,10 @@ class Cart extends Medium{
 
 	private function delete(){
 
-		if(empty($this->product_id) || empty($this->cart)) return;
+		if(empty($this->item_id) || empty($this->cart)) return;
 
 		foreach ($this->cart as $k => $v) {
-			if($v['product_id']==$this->product_id && $v['options']==$this->options){
+			if($v['item_id']==$this->item_id && $v['options']==$this->options){
 				$this->cart[$k]['quantity']-=$this->quantity;
 				if($this->cart[$k]['quantity']<=0)
 					unset($this->cart[$k]);
@@ -76,10 +76,10 @@ class Cart extends Medium{
 
 	private function remove(){
 
-		if(empty($this->product_id) || empty($this->cart)) return;
+		if(empty($this->item_id) || empty($this->cart)) return;
 
 		foreach ($this->cart as $k => $v) {
-			if($v['product_id']==$this->product_id && $v['options']==$this->options){
+			if($v['item_id']==$this->item_id && $v['options']==$this->options){
 				unset($this->cart[$k]);
 			}
 		}

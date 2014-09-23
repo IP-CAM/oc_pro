@@ -8,7 +8,7 @@ class ProductAction extends Action{
 
 		empty($id) && exit('no product id');
 
-		$product=M::product('product','detail',array('product_id'=>$id));
+		$product=M::product('product','detail',array('item_id'=>$id));
 
 		empty($product) && go('/');
 
@@ -18,7 +18,7 @@ class ProductAction extends Action{
 
 		M::product('option','product.option',array('sign'=>'product_options','options'=>$product['product_options']));
 
-		M::product('category','get.async',array('sign'=>'category','cid'=>$product['category_id']));
+		M::product('category','get.async',array('sign'=>'category','cid'=>$product['cid']));
 
 		// M::product('')
 

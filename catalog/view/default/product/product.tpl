@@ -221,12 +221,12 @@
       <div class="cart">
         <div><?php echo $text_qty; ?>
           <input type="text" name="quantity" size="2" value="<?php echo $minimum; ?>" />
-          <input type="hidden" name="product_id" size="2" value="<?php echo $product_id; ?>" />
+          <input type="hidden" name="item_id" size="2" value="<?php echo $item_id; ?>" />
           &nbsp;
           <input type="button" value="<?php echo $button_cart; ?>" id="button-cart" class="button" />
           <span>&nbsp;&nbsp;<?php echo $text_or; ?>&nbsp;&nbsp;</span>
-          <span class="links"><a onclick="addToWishList('<?php echo $product_id; ?>');"><?php echo $button_wishlist; ?></a><br />
-            <a onclick="addToCompare('<?php echo $product_id; ?>');"><?php echo $button_compare; ?></a></span>
+          <span class="links"><a onclick="addToWishList('<?php echo $item_id; ?>');"><?php echo $button_wishlist; ?></a><br />
+            <a onclick="addToCompare('<?php echo $item_id; ?>');"><?php echo $button_compare; ?></a></span>
         </div>
         <?php if ($minimum > 1) { ?>
         <div class="minimum"><?php echo $text_minimum; ?></div>
@@ -332,7 +332,7 @@
         <?php if ($product['rating']) { ?>
         <div class="rating"><img src="catalog/view/theme/default/image/stars-<?php echo $product['rating']; ?>.png" alt="<?php echo $product['reviews']; ?>" /></div>
         <?php } ?>
-        <a onclick="addToCart('<?php echo $product['product_id']; ?>');" class="button"><?php echo $button_cart; ?></a></div>
+        <a onclick="addToCart('<?php echo $product['item_id']; ?>');" class="button"><?php echo $button_cart; ?></a></div>
       <?php } ?>
     </div>
   </div>

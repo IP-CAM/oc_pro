@@ -6,17 +6,17 @@ class Option extends Medium{
 	
 		switch ($action) {
 	
-			case 'product.option':return $this->productOption($data);break;
+			case 'item.option':return $this->itemOption($data);break;
 	
 		}
 	}
 
-	private function productOption($data){
+	private function itemOption($data){
 
 		$sign=$data['sign'];
 
 		$options=$data['options'];
 
-		return SEA::product('option','getProductOptions',array($sign,$options));
+		return SEA::product('option','getItemOptions',array($sign,$options));
 	}
 }

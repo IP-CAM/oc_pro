@@ -8,8 +8,7 @@ void usage(const char* usage_string){
 }
 
 int start_with(char *str,char *pre){
-	for (;;str++,pre++)
-	{
+	for (;;str++,pre++){
 		if(!*pre){
 			return 0;
 		}else if(*str!=*pre){
@@ -26,9 +25,21 @@ int end_with(char *str,char *suffix){
 
 char *strpad(char *str,int total,const char *padding){
 	if(strlen(str)>=total) return str;
-	for (int i = strlen(str); i < total; ++i)
-	{
+	for (int i = strlen(str); i < total; ++i){
 		strcat(str,padding);
 	}
 	return str;
+}
+
+char *strtoupper(const char *str){
+	char *p=(char*)str;
+    while(*p){
+        if(*p < 0){
+            p += 2;
+            continue;
+        }
+        if(*p >= 'a' && *p <= 'z') *p &= 0x5F;
+        p++;
+    }
+    return (char*)str;
 }

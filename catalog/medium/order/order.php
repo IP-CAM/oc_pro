@@ -22,7 +22,7 @@ class Order extends Medium{
 
 		$order['order_no']=uniqid(ORDER_NO_PREFIX,false);
 
-		$order['products']=array(array('product_id'=>23,'title'=>'hello'));
+		$order['products']=array(array('item_id'=>23,'title'=>'hello'));
 
 		$order['shipping']=array('address'=>'paypal');
 

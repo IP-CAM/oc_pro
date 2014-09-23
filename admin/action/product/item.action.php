@@ -1,16 +1,16 @@
 <?php
 
-class ProductAction extends AdminAction {
+class ItemAction extends AdminAction {
 	
-	protected $lang='product/product';
+	protected $lang='product/item';
      
   	public function index() {
 
-  		$products=M::product('product','list',array());
+  		$products=M::product('item','list',array());
 
   		$this->assign(array('products'=>$products['value'],'total'=>$products['total']));
 
-  		$this->display('product/product_list');
+  		$this->display('product/item_list');
   	}
 
   	public function edit(){

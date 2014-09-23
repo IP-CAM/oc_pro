@@ -89,7 +89,7 @@ int cmd_select(int argc,const char **argv){
 	char sql[512];
 	parse_select_sql(stsql,sql);
 	MYSQL_RES *res=select(sql);
-	print_sql_result(res);
+	print_sql_result(res,1);
 	free_res(res);
 	return 0;
 }

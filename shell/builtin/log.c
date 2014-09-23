@@ -1,6 +1,9 @@
 #include "log.h"
 #include "model.h"
 #include "time.h"
+#include "common.h"
+
+static st_sql_log **logs;
 
 int file_exist(char* filename){
 	FILE *fp=fopen(filename,"r");
@@ -27,20 +30,42 @@ st_sql_log *get_date_log(char *dt){
 	}
 	if(rows==0) return NULL;
 	st_sql_log *logs=(st_sql_log*)calloc(sizeof(st_sql_log),rows);
-	char *sqltime=(char*)malloc(sizeof(char)*30);
-	char *sql=(char*)malloc(sizeof(char)*1024);
-	int flag=0;
+	// char *sqltime=(char*)malloc(sizeof(char)*30);
+	// char *sql=(char*)malloc(sizeof(char)*1024);
+	char sqltime[64]={""};
+	char sql[1024]={""};
+	int is_sqltime=1;
+	int is_sql=0;
 	rewind(fp);
-	int row=0;
+	int row=0,i=0,j=0;
 	while((ch=fgetc(fp))!=EOF){
-		if(ch==9){ // \t
-			row++;
-			printf("%s\n", "sqltime");
-			printf("%s\n", sqltime);
-			continue;
+		if(is_sqltime){ // \t
+			if(ch==9){
+				is_sqltime=0;
+				is_sql=1;
+				i=0;
+				printf("%s\t", sqltime);
+				continue;
+			}
+			sqltime[i]=ch;
+			i++;
 		}
-		*sqltime=ch;
-		sqltime++;
+		if(is_sql){
+			if(ch==10){
+				// logs[row]=(st_sql_log){sqltime,sql};
+				printf("%s\n", sql);
+				// memset(sqltime,'',64);
+				// memset(sql,'',1024);
+				is_sqltime=1;
+				is_sql=0;
+				j=0;
+				row++;
+				continue;	
+			}
+			
+			sql[j]=ch;
+			j++;
+		}
 	}
 	return NULL;
 }
@@ -61,6 +86,7 @@ static char *get_file_name(char *filepath){
 	time_t now=time(NULL);
 	struct tm *tmptr=gmtime(&now);
 	int month=tmptr->tm_mon;
+	// char *str_month=month<10?
 	sprintf(filepath,"%s%d%d%d%s",LOG_PATH,tmptr->tm_year+1900,tmptr->tm_mon+1,tmptr->tm_mday,LOG_EXT);
 	return filepath;
 }
@@ -95,7 +121,9 @@ int cmd_log(int argc,const char** argv){
 
 	if(!strlen(current)) current=get_current_date();
 
-	get_date_log(current);
-
+	st_sql_log *logs=get_date_log(current);
+	// while(*logs){
+	// 	printf("%s\n", (*logs).sqltime);
+	// }
 	return 1;
 }

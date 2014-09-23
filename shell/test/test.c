@@ -5,7 +5,7 @@
 
 
 struct category_struct{
-	int category_id;
+	int cid;
 	char *name;
 	int id_parent;
 };

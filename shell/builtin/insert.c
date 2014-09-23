@@ -74,7 +74,7 @@ int cmd_insert(int argc,const char **argv){
 
 	parse_select_sql(slsql,sql);
 	MYSQL_RES *res=select(sql);
-	print_sql_result(res);
+	print_sql_result(res,1);
 	free_res(res);
 	free(slsql);
 	return 0;

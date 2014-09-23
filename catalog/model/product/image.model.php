@@ -2,9 +2,9 @@
 
 class ImageSphinx extends SphinxModel {
 
-	protected $index=INDEX_PRODUCT_IMAGE;
+	protected $index=INDEX_ITEM_IMAGE;
 
-	public function getProductImages($sign,$images) {
+	public function getItemImage($sign,$images) {
 
 		assert(is_array($images));
 
