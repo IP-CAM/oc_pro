@@ -1,5 +1,6 @@
 <?php
 
 function admin_url($url){
-	return "http://".$_SERVER['HTTP_HOST']."/admin/{$url}";
+	
+	return sprintf("http://%s/admin/%s",$_SERVER['HTTP_HOST'],$url);
 }
