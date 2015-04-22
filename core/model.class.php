@@ -12,7 +12,7 @@ abstract class Model{
 	
 	protected static $_instances=array();
 
-	protected function __construct(){
+	public function __construct(){
 		//$this->_cache=MemoryCache::Instance();	
 	}
 	/**
@@ -91,9 +91,105 @@ class MysqlModel extends Model{
 	protected $prefix='kt_';
 	
 	protected $table='';
+
+	public function __construct(){
+		parent::__construct();
+		$this->init();
+	}
 	
 	protected function init(){
 		$this->_db=DBMysql::Instance();
+	}
+
+	// 拼接values部分
+	protected function set($sets){
+		foreach($sets as $field=>&$value){
+			if($value===''){
+				$value="`{$field}`=NULL";
+			}else{
+				$value="`{$field}`='".$this->escape($value)."'";	
+			}
+		}
+		return ' SET '.implode(',',$sets);
+	}
+
+	// 拼接where部分
+	protected function where($where,$split=' AND '){
+		if(empty($where)) return '';
+		if(!is_array($where)) return ' WHERE '.$where;
+		array_walk($where,function(&$value,$field){
+			$value="`{$field}`='{$value}'";
+		});
+
+		return ' WHERE '.implode($split,$where);
+	}
+
+	protected function field($fields){
+		if(empty($fields)) return '*';
+		if(!is_array($fields)) return $fields;
+		return implode(',', $fields);
+	}
+
+	protected function sort($sort){
+		if(!is_array($sort) || empty($sort)) return '';
+		return ' ORDER BY '.implode(',', $sort);
+	}
+
+	protected function limit($limit){
+		if(empty($limit)) return '';
+		if(is_array($limit)) $limit=implode(',', $limit);
+		return ' LIMIT '.$limit;
+	}
+
+	protected function group($group){
+		if(empty($group)) return '';
+		if(is_array($group)) $group=implode(',', $group);
+		return ' GROUP BY '.$group;
+	}
+
+	/*
+	*	插入新数据
+	*/
+	protected function insert($data){
+		if(empty($data)) return 0;
+		$values=$this->set($data);
+		return $this->query("INSERT INTO ".DB_PREFIX.$this->table." {$values}");
+	}
+	/**
+	*	适合where是并集的情况下
+	*/
+	protected function update($data,$where){
+		if(empty($data)) return 0;
+		$values=$this->set($data);
+		if(empty($values)) return;
+		$where=$this->where($where);
+		return $this->query("UPDATE ".DB_PREFIX.$this->table." {$values} {$where}");
+	}
+
+	protected function select($params=array()){
+		$field=$this->field($params['field']);
+		$where=$this->where($params['where']);
+		$sort=$this->sort($params['sort']);
+		$group=$this->group($params['group']);
+		$limit=$this->limit($params['limit']);
+		return $this->find("SELECT {$field} FROM ".DB_PREFIX.$this->table." {$where} {$group} {$sort} {$limit}");
+	}
+
+	protected function delete($where){
+		$where=$this->where($where);
+		return $this->query("DELETE FROM ".DB_PREFIX.$this->table." {$where}");	
+	}
+
+	protected function replace($data,$where){
+		if(empty($data)) return 0;
+		$values=$this->set($data);
+		$where=$this->where($where);
+		return $this->query("REPLACE INTO ".DB_PREFIX.$this->table." {$values} {$where}");
+	}
+
+	protected function one($params=array()){
+		$result=$this->select($params);
+		return $result[0];
 	}
 
 	public function find($sql){
@@ -110,6 +206,10 @@ class MysqlModel extends Model{
 	
 	public function count($sql){
 		return $this->_db->count($sql);
+	}
+
+	public function escape($value){
+		return $this->_db->escape($value);
 	}
 }
 /**

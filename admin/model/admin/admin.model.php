@@ -2,17 +2,19 @@
 
 class AdminMysql extends MysqlModel{
 
+	protected $table='admin';
+
 	public function getAdmin($nick){
 
-		$sql="SELECT * FROM ".DB_PREFIX."admin WHERE nick = '" . $nick . "' AND status = 1";
+		$param=array('where'=>array('nick'=>$nick,'status'=>1));
 		
-		return $this->get($sql);
+		return $this->one($sql);
 	}
 
 	public function getAdminByID($uid){
 
-		$sql="SELECT * FROM ".DB_PREFIX."admin WHERE uid={$uid}";
-
-		return $this->get($sql);
+		$param=array('where'=>array('uid'=>$uid));
+		
+		return $this->one($sql);
 	}
 }

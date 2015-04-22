@@ -102,39 +102,4 @@
     </div>
   </div>
 </div>
-<!--[if IE]>
-<script type="text/javascript" src="view/javascript/jquery/flot/excanvas.js"></script>
-<![endif]--> 
-{literal}
-<script type="text/javascript">
-  function getSalesChart(range) {
-  	$.ajax({
-  		type: 'get',
-  		url: 'index.php?route=common/home/chart&range=' + range,
-  		dataType: 'json',
-  		async: false,
-  		success: function(json) {
-  			var option = {	
-  				shadowSize: 0,
-  				lines: { 
-  					show: true,
-  					fill: true,
-  					lineWidth: 1
-  				},
-  				grid: {
-  					backgroundColor: '#FFFFFF'
-  				},	
-  				xaxis: {
-              		ticks: json.xaxis
-  				}
-  			}
-
-  			$.plot($('#report'), [json.order, json.customer], option);
-  		}
-  	});
-  }
-
-  getSalesChart($('#range').val());
-</script> 
-{/literal}
 {$footer}

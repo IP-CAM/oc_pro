@@ -88,6 +88,10 @@ class DBMysql extends DB{
 	public function query($sql){
 		return $this->_query($sql);
 	}
+
+	public function escape($value){
+		return mysql_escape_string($value);
+	}
 	/**
 	*	构造查询
 	*/

@@ -18,7 +18,7 @@ class Login extends Medium{
 
 		if(empty($uname) || empty($password)) return 'uname or password can not empty';
 
-		$admin=SQL::admin('admin','getAdmin',array($uname));
+		$admin=D("admin/admin")->getAdmin($uname);
 
 		if(empty($admin)) return 'no this user';
 
