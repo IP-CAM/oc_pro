@@ -40,20 +40,6 @@
               <li><a href="{$option}">{$langs['text_option']}</a></li>
             </ul>
           </li>
-          <li id="extension" class="{$selected['extension']}"><a class="top">{$langs['text_extension']}</a>
-            <ul>
-              <li><a href="{$module}">{$langs['text_module']}</a></li>
-              <li><a href="{$shipping}">{$langs['text_shipping']}</a></li>
-              <li><a href="{$payment}">{$langs['text_payment']}</a></li>
-              <li><a href="{$total}">{$langs['text_total']}</a></li>
-            </ul>
-          </li>
-          <li id="sale" class="{$selected['sale']}"><a class="top">{$langs['text_sale']}</a>
-            <ul>
-              <li><a href="{$order}">{$langs['text_order']}</a></li>
-              <li><a href="{$customer}">{$langs['text_customer']}</a></li>
-            </ul>
-          </li>
           <li id="system" class="{$selected['setting']}"><a class="top">{$langs['text_system']}</a>
             <ul>
               <li><a href="{$setting}">{$langs['text_setting']}</a></li>
