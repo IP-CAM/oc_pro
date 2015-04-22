@@ -74,6 +74,41 @@ function D($path){
 	return $model_instances[$name]=$instance;
 }
 
+function http($method,$url,$data){
+
+	$ch=curl_init();
+
+	curl_setopt($ch,CURLOPT_TIMEOUT,60);
+
+	curl_setopt($ch,CURLOPT_HEADER,0);
+
+	curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+
+	curl_setopt($ch,CURLOPT_USERAGENT,"Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.1.4322; .NET CLR 2.0.50727)");
+
+	if($method=='get'){
+
+		$url.=http_build_query($data);
+	}else if($method=='post'){
+
+		curl_setopt($ch_, CURLOPT_POST, true);
+
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+	}
+
+	curl_setopt($ch, CURLOPT_URL, $url);
+
+	if( ! $result = curl_exec($ch)) {
+		$error=curl_error($ch);
+	}
+
+	curl_close($ch);
+
+	return $result;
+}
+
 
 function isLogged(){
 	return !!getLoggedID();
