@@ -28,6 +28,53 @@ function P($class,$data=array()){
 	return $instance->run($data);
 }
 
+function M($path,$action,$data=array()){
+
+	static $medium_instances=array();
+
+	list($dir,$name)=explode("/",$path);
+
+	$name=strtolower($name);
+
+	$instance=null;
+
+	if(isset($medium_instances[$name])){
+
+		$instance= $medium_instances[$name];
+	}else{
+
+		include_once MEDIUM.strtolower($path).'.php';
+
+		$cls=ucfirst($name);
+
+		$instance=new $cls();
+
+		$medium_instances[$name]=$instance;
+	}
+
+	return $instance->run($action,$data);
+}
+
+function D($path){
+
+	static $model_instances=array();
+
+	list($dir,$name)=explode("/",$path);
+
+	$name=strtolower($name);
+
+	if(isset($model_instances[$name])) return $model_instances[$name];
+
+	include_once MODEL.strtolower($path).'.model.php';
+
+	$cls=ucfirst($name).'Mysql';
+
+	$instance=new $cls();
+
+	return $model_instances[$name]=$instance;
+}
+
+
 function isLogged(){
 	return !!getLoggedID();
 }

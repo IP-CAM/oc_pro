@@ -1,3 +1,4 @@
+{top}
 <!DOCTYPE html>
 <html>
   <head>
@@ -68,13 +69,6 @@
           
         </ul>
         <ul class="right" style="display: none;">
-          <li id="store"><a href="{$store}" target="_blank" class="top">{$langs['text_front']}</a>
-            <ul>
-              {foreach from=$stores item=store}
-                <li><a href="{$stores['href']}" target="_blank">{$store['name']}</a></li>
-              {/foreach}
-            </ul>
-          </li>
           <li><a class="top" href="{$logout}">{$langs['text_logout']}</a></li>
         </ul>
       </div>
@@ -100,3 +94,4 @@
     });
   </script>
 {/literal}
+{/top}
